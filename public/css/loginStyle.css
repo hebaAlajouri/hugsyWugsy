@@ -1,0 +1,115 @@
+/* General Body Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f1f9;
+    color: #4a4a4a;
+    margin: 0;
+    padding: 0;
+}
+
+/* Login Container */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fbcce7, #ffb6c1);
+    padding: 20px;
+    text-align: center;
+}
+
+.login-header {
+    margin-bottom: 30px;
+}
+
+.login-header h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 3rem;
+    color: #ff77b5; /* Soft pink */
+}
+
+.login-header p {
+    font-size: 1.2rem;
+    color: #ff77b5;
+    margin-top: 10px;
+}
+
+/* Form Styles */
+.login-form {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Form Group */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 1.1rem;
+    color: #ff77b5;
+    font-weight: bold;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #f1c6d9;
+    background-color: #f8f0f7;
+    font-size: 1rem;
+    color: #4a4a4a;
+    transition: border 0.3s ease;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #ff77b5;
+    outline: none;
+}
+
+/* Submit Button */
+.submit-btn {
+    background-color: #ff77b5;
+    color: white;
+    padding: 14px 20px;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #ff66a1; /* Darker pink */
+}
+
+/* Links */
+.forgot-password-link,
+.register-link {
+    font-size: 1rem;
+    margin-top: 20px;
+}
+
+.forgot-password-link a,
+.register-link a {
+    color: #ff77b5;
+    text-decoration: none;
+}
+
+/* Animation for Input Focus */
+input[type="email"]:focus::placeholder,
+input[type="password"]:focus::placeholder {
+    color: transparent;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border: 2px solid #ff77b5;
+}

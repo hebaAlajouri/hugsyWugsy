@@ -1,0 +1,125 @@
+/* General page styling */
+.checkout-container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #fff0f5;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(255, 192, 203, 0.4);
+    font-family: 'Poppins', sans-serif;
+}
+
+.checkout-title {
+    text-align: center;
+    font-size: 32px;
+    color: #d94f87;
+    margin-bottom: 30px;
+}
+
+/* Form Styling */
+.checkout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.checkout-form h2 {
+    font-size: 24px;
+    color: #ff69b4;
+    border-bottom: 2px dashed #ffc0cb;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #c71585;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    padding: 12px;
+    border: 2px solid #ffb6c1;
+    border-radius: 10px;
+    background: #fff;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #d94f87;
+    outline: none;
+}
+
+/* Order Summary */
+.order-summary {
+    background: #ffe4e1;
+    padding: 20px;
+    border-radius: 15px;
+    font-size: 18px;
+    color: #8b008b;
+}
+
+.order-summary p {
+    margin: 8px 0;
+}
+
+/* Place Order Button */
+.place-order-btn {
+    background-color: #ff69b4;
+    color: white;
+    padding: 15px 30px;
+    font-size: 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    align-self: center;
+    margin-top: 20px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.place-order-btn:hover {
+    background-color: #ff85c1;
+    transform: scale(1.05);
+}
+
+/* Success Message */
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    font-size: 18px;
+    text-align: center;
+    border: 2px solid #c3e6cb;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    .checkout-container {
+        padding: 20px;
+    }
+
+    .checkout-title {
+        font-size: 26px;
+    }
+
+    .checkout-form h2 {
+        font-size: 20px;
+    }
+
+    .place-order-btn {
+        font-size: 18px;
+        padding: 12px 25px;
+    }
+}

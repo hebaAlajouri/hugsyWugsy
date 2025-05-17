@@ -1,0 +1,446 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #FFD6E3;
+    color: #4B0082;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: linear-gradient(90deg, #E6399B, #FFD6E3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+    color: #4B0082;
+    letter-spacing: 1px;
+}
+
+nav ul {
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav a {
+    text-decoration: none;
+    color: #4B0082;
+    font-weight: 600;
+    padding: 8px 18px;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    background: #E6399B;
+    transition: width 0.3s ease;
+    bottom: -5px;
+    left: 0;
+}
+
+nav a:hover {
+    color: #E6399B;
+    transform: translateY(-2px);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* Profile Image Styling */
+.profile-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #ff77b5;
+}
+
+.profile-btn .profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+/* Login Button Styling */
+.login-btn {
+    background-color: #ff77b5;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 30px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.login-btn:hover {
+    background-color: #ff66a1; /* Darker pink for hover effect */
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 20px;
+    background: #FFD6E3;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-out;
+}
+
+.hero-text {
+    max-width: 500px;
+    text-align: left;
+}
+
+.hero h1 {
+    font-size: 42px;
+    color: #E6399B;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.hero p {
+    color: #4B0082;
+    font-size: 18px;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+.customize-btn {
+    background: #4B0082;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 30px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.customize-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(75, 0, 130, 0.3);
+}
+
+.hero img {
+    max-width: 50%;
+    height: auto;
+    margin-left: 30px;
+    border-radius: 15px;
+    animation: slideIn 1s ease-out;
+}
+
+/* Customization Preview */
+.customization {
+    background-color: #FFF;
+  
+   
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Center elements vertically */
+}
+
+.custom-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FFF;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 90%; /* Adjust the width for better responsiveness */
+    max-width: 1200px; /* Set a maximum width */
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.options {
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.options h3 {
+    font-size: 20px;
+    color: #4B0082;
+}
+
+.colors {
+    display: flex;
+    gap: 10px;
+}
+
+.accessories {
+    display: flex;
+    gap: 15px;
+}
+
+.customization h2 {
+    color: #4B0082;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* Teddy Customization Colors */
+.colors span {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 5px;
+  
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Hover Effect - Glow */
+.colors span:hover {
+    transform: scale(1.2);
+   
+}
+
+.purple { background: #4B0082; }
+.pink { background: #E6399B; }
+.lavender { background: #C2A5D4; }
+
+/* Our Promise Section */
+.our-promise {
+    background-color: #FFEEF4; /* Soft pastel pink */
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.our-promise h2 {
+    font-size: 32px;
+    color: #FF69B4; /* Bright pink */
+    margin-bottom: 30px;
+}
+
+.promises {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 20px;
+    flex-wrap: wrap;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.promise {
+    background: #FFFFFF;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    text-align: center;
+    flex: 1;
+    min-width: 300px;
+    max-width: 32%;
+}
+
+.promise:hover {
+    transform: translateY(-5px);
+}
+
+.promise-icon {
+    width: 80px;
+    height: 90px;
+    object-fit: contain;
+    color: #FF1493;
+    font-size: 4vh;
+   
+}
+
+.promise h3 {
+    font-size: 22px;
+    color: #FF1493; /* Deep pink */
+    margin-bottom: 10px;
+}
+
+.promise p {
+    font-size: 16px;
+    color: #6D6D6D;
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .promises {
+        flex-wrap: wrap;
+    }
+    .promise {
+        max-width: 48%;
+    }
+}
+
+@media (max-width: 600px) {
+    .promise {
+        max-width: 100%;
+    }
+}
+
+
+/* Testimonials */
+.happy-hugs {
+    padding: 50px;
+    background: #FFF;
+    text-align: center;
+    animation: fadeIn 1s ease-out;
+}
+
+.happy-hugs h2 {
+    color: #E6399B;
+    font-size: 32px;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.testimonials-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.testimonial-card {
+    background: #FFD6E3;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonial-card::before {
+    content: "❝";
+    font-size: 40px;
+    color: #E6399B;
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    opacity: 0.6;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(230, 57, 155, 0.2);
+}
+
+.testimonial-text {
+    font-size: 16px;
+    color: #4B0082;
+    padding-left: 25px;
+}
+
+.testimonial-author {
+    font-weight: bold;
+    margin-top: 10px;
+    color: #E6399B;
+}
+
+/* CTA */
+.cta {
+    background: #C2A5D4;
+    padding: 50px;
+    color: white;
+    border-radius: 20px;
+    margin: 50px 0;
+    animation: fadeIn 1s ease-out;
+}
+
+.create-btn {
+    background: #4B0082;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 30px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.create-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(75, 0, 130, 0.3);
+}
+/* Footer */
+footer {
+    padding: 20px;
+    background: #FFF; /* White background */
+    color: #E6399B; /* Pink text color */
+    text-align: center; /* Center the footer text */
+    font-size: 14px; /* Adjust font size if needed */
+    border-top: 2px solid #E6399B; /* Pink border at the top */
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .steps {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .step {
+        width: 90%;
+    }
+
+    .testimonials-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .testimonial-card {
+        width: 90%;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

@@ -1,0 +1,134 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    text-align: center;
+    color: #ff69b4;
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.product {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.product img.main-image {
+    width: 350px;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+.product img.main-image:hover {
+    transform: scale(1.05);
+}
+
+.product-info {
+    flex: 1;
+}
+
+.rating {
+    font-size: 18px;
+    color: #ff69b4;
+}
+
+.price {
+    font-size: 22px;
+    font-weight: bold;
+    color: #d63384;
+}
+
+.description {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+form label {
+    font-weight: bold;
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.color-selection div {
+    display: flex;
+    gap: 10px;
+}
+
+.color {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.color.pink { background: #ff69b4; }
+.color.blue { background: #5e8bf5; }
+.color.yellow { background: #ffeb3b; }
+
+form button {
+    background: #ff69b4;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+form button:hover {
+    background: #d63384;
+}
+
+.features {
+    display: flex;
+    justify-content: space-around;
+    background: #fce4ec;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.features div {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.reviews {
+    background: #fff3f8;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.reviews .review {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.reviews .review img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}

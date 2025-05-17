@@ -1,0 +1,171 @@
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #FFD6E3;
+    color: #4B0082;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: linear-gradient(90deg, #E6399B, #FFD6E3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+    color: #4B0082;
+    letter-spacing: 1px;
+}
+
+nav ul {
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav a {
+    text-decoration: none;
+    color: #4B0082;
+    font-weight: 600;
+    padding: 8px 18px;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    background: #E6399B;
+    transition: width 0.3s ease;
+    bottom: -5px;
+    left: 0;
+}
+
+nav a:hover {
+    color: #E6399B;
+    transform: translateY(-2px);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+/* Profile Image Styling */
+.profile-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #ff77b5;
+}
+
+.profile-btn .profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+/* Login Button Styling */
+.login-btn {
+    background-color: #ff77b5;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 30px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.login-btn:hover {
+    background-color: #ff66a1; /* Darker pink for hover effect */
+}
+
+
+/* Gift Button */
+.gift-btn {
+    background: #E6399B;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
+}
+
+.gift-btn:hover {
+    background: #C0277A;
+    transform: scale(1.1);
+}
+/* Form styles */
+.contact-form {
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    color: #ff77b5; /* Pink color for form labels */
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    color: #333; /* Text color inside inputs */
+}
+
+textarea.form-input {
+    resize: vertical;
+}
+
+.submit-button {
+    background-color: #ff77b5; /* Pink color for the submit button */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.submit-button:hover {
+    background-color: #ff66a1; /* Darker pink on hover */
+}
+
+/* Footer */
+footer {
+    padding: 20px;
+    background: #FFF; /* White background */
+    color: #E6399B; /* Pink text color */
+    text-align: center; /* Center the footer text */
+    font-size: 14px; /* Adjust font size if needed */
+    border-top: 2px solid #E6399B; /* Pink border at the top */
+    margin-top: 2vh;
+}

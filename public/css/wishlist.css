@@ -1,0 +1,86 @@
+/* 🎀 Feminine & Cute Wishlist Page Styling 🎀 */
+body {
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    font-family: 'Poppins', sans-serif;
+    color: #ff4d94;
+    text-align: center;
+}
+
+.wishlist-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ff2d75;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 5px rgba(255, 100, 150, 0.5);
+}
+
+.wishlist-subtitle {
+    font-size: 1.2rem;
+    color: #ff6699;
+    margin-bottom: 30px;
+}
+
+.product-card {
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(255, 100, 150, 0.3);
+    transition: transform 0.3s ease-in-out;
+    background: #ffffff;
+    padding: 15px;
+    position: relative;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+
+.product-card img {
+    border-radius: 15px;
+}
+
+.buy-btn {
+    background: #ff66b2;
+    color: white;
+    border-radius: 30px;
+    padding: 8px 20px;
+    font-size: 1rem;
+    transition: 0.3s;
+    border: none;
+}
+
+.buy-btn:hover {
+    background: #ff2d75;
+}
+
+.wishlist-icon {
+    font-size: 28px;
+    cursor: pointer;
+    color: gray;
+    margin-left: 10px;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.wishlist-icon.active {
+    color: red;
+    animation: pop 0.3s ease-in-out;
+}
+
+/* Wishlist Animation */
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+/* Ribbon Decoration */
+.ribbon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #ff2d75;
+    color: white;
+    padding: 5px 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 5px;
+}

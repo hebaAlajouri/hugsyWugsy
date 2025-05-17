@@ -1,0 +1,266 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #FFD6E3;
+    color: #4B0082;
+    margin: 0;
+    padding: 0;
+}
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: linear-gradient(90deg, #E6399B, #FFD6E3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+    color: #4B0082;
+    letter-spacing: 1px;
+}
+
+nav ul {
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav a {
+    text-decoration: none;
+    color: #4B0082;
+    font-weight: 600;
+    padding: 8px 18px;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    background: #E6399B;
+    transition: width 0.3s ease;
+    bottom: -5px;
+    left: 0;
+}
+
+nav a:hover {
+    color: #E6399B;
+    transform: translateY(-2px);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* Profile Image Styling */
+.profile-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #ff77b5;
+}
+
+.profile-btn .profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+/* Login Button Styling */
+.login-btn {
+    background-color: #ff77b5;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 30px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.login-btn:hover {
+    background-color: #ff66a1; /* Darker pink for hover effect */
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 20px; /* More top/bottom padding */
+    background: url('../products/bears.webp') no-repeat center center;
+    background-size: cover;
+    border-radius: 20px;
+    position: relative;
+    min-height: 90vh; /* Make the hero section take almost full screen height */
+   
+}
+
+
+/* Hero Text with Background and Opacity */
+.hero-text {
+    background-color: rgba(0, 0, 0, 0.5);  /* Black background with 50% opacity */
+    color: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.hero img {
+    max-width: 40%;
+    height: auto;
+    margin-left: 20px;
+    z-index: 3;
+}
+
+/* CTA Button Styles */
+.cta-btn {
+    background: #4B0082;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 30px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.cta-btn:hover {
+    background: #E6399B;
+}
+
+
+/* Filters Section */
+.filters {
+    padding: 30px 20px;
+    background: #FFF;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+}
+
+.filter-options {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    background-color: #E6399B;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.filter-btn:hover {
+    background-color: #4B0082;
+}
+
+/* Swiper Product Grid */
+/* Product Grid */
+
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;  /* Ensures cards wrap to the next line on smaller screens */
+    justify-content: space-around;
+    gap: 20px;  /* Space between the cards */
+    padding: 20px;
+    margin-top: 4vh;
+}
+
+.product-card {
+    flex: 0 1 220px;  /* Allow the card to grow but maintain its width */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    background-color: white;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);  /* Adds hover effect */
+}
+
+.product-card img {
+    width: 100%;
+    border-radius: 8px;
+    height: auto;
+}
+
+.product-card h3 {
+    font-size: 1.25rem;
+    margin-top: 10px;
+}
+
+.price {
+    color: #ff70a6;
+    font-size: 1.2rem;
+    margin-top: 5px;
+}
+
+.btn {
+    padding: 8px 20px;
+    margin-top: 10px;
+    background-color: #ff70a6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #ff4883;
+}
+
+
+/* Recommendations Section */
+.customization {
+    background: #C2A5D4;
+    padding: 50px;
+    border-radius: 20px;
+    color: white;
+    margin: 40px 0;
+    display: flex;
+    justify-content: center; /* Centers content horizontally */
+    align-items: center;
+    flex-direction: column; 
+}
+
+footer {
+    padding: 20px;
+    background: #FFF; /* White background */
+    color: #E6399B; /* Pink text color */
+    text-align: center; /* Center the footer text */
+    font-size: 14px; /* Adjust font size if needed */
+    border-top: 2px solid #E6399B; /* Pink border at the top */
+}
+
+/* Swiper Navigation */
+.swiper-button-next, .swiper-button-prev {
+    color: #4B0082;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .product-grid {
+        padding: 0 20px;
+    }
+}
