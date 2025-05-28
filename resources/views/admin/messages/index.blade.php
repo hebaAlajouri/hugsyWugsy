@@ -50,105 +50,72 @@
             <!-- Decorative Header -->
             <div class="h-2 bg-gradient-to-r from-pink-300 via-rose-300 to-purple-300"></div>
             
-            <!-- Table Container -->
-            <div class="overflow-x-auto">
-                <table class="w-full">
-                    <thead class="bg-gradient-to-r from-pink-50 to-rose-50">
-                        <tr>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                                <div class="flex items-center">
-                                    <svg class="w-4 h-4 mr-2 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path>
+       <!-- Table Container -->
+<div class="overflow-x-auto">
+    <table class="min-w-full border-collapse md:table">
+        <thead class="hidden md:table-header-group bg-gradient-to-r from-pink-50 to-rose-50">
+            <tr>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">ID</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Name</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Email</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Subject</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-pink-100 md:table-row-group">
+            @foreach($messages as $msg)
+                <tr class="block md:table-row hover:bg-gradient-to-r hover:from-pink-50/50 hover:to-rose-50/50 transition-all duration-200 mb-4 md:mb-0 rounded-lg md:rounded-none p-4 md:p-0">
+                    <td class="block md:table-cell px-6 py-2 md:py-4 whitespace-normal md:whitespace-nowrap" data-label="ID">
+                        <div class="inline-block md:hidden font-semibold text-pink-600">ID:</div>
+                        <div class="w-8 h-8 bg-gradient-to-r from-pink-400 to-rose-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
+                            {{ $msg->id }}
+                        </div>
+                    </td>
+                    <td class="block md:table-cell px-6 py-2 md:py-4 whitespace-normal md:whitespace-nowrap" data-label="Name">
+                        <div class="inline-block md:hidden font-semibold text-rose-600">Name:</div>
+                        <div class="text-sm font-medium text-gray-900">{{ $msg->name }}</div>
+                    </td>
+                    <td class="block md:table-cell px-6 py-2 md:py-4 whitespace-normal md:whitespace-nowrap" data-label="Email">
+                        <div class="inline-block md:hidden font-semibold text-purple-600">Email:</div>
+                        <div class="text-sm text-gray-600">{{ $msg->email }}</div>
+                    </td>
+                    <td class="block md:table-cell px-6 py-2 md:py-4 whitespace-normal md:whitespace-nowrap max-w-xs truncate" data-label="Subject" title="{{ $msg->subject }}">
+                        <div class="inline-block md:hidden font-semibold text-pink-600">Subject:</div>
+                        {{ $msg->subject }}
+                    </td>
+                    <td class="block md:table-cell px-6 py-2 md:py-4 whitespace-normal md:whitespace-nowrap" data-label="Actions">
+                        <div class="inline-block md:hidden font-semibold text-rose-600 mb-1">Actions:</div>
+                        <div class="flex space-x-2 justify-start md:justify-center">
+                            <!-- Edit Button -->
+                            <a href="{{ route('admin.messages.edit', $msg->id) }}" 
+                               class="inline-flex items-center px-3 py-2 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-xs font-semibold rounded-xl hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-amber-200">
+                                <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                </svg>
+                                Edit
+                            </a>
+
+                            <!-- Delete Form -->
+                            <form action="{{ route('admin.messages.destroy', $msg->id) }}" method="POST" style="display:inline-block;">
+                                @csrf 
+                                @method('DELETE')
+                                <button type="submit" 
+                                        onclick="return confirm('Are you sure you want to delete this message? This action cannot be undone.')"
+                                        class="inline-flex items-center px-3 py-2 bg-gradient-to-r from-red-400 to-pink-500 text-white text-xs font-semibold rounded-xl hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-200">
+                                    <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                                     </svg>
-                                    ID
-                                </div>
-                            </th>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                                <div class="flex items-center">
-                                    <svg class="w-4 h-4 mr-2 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                                    </svg>
-                                    Name
-                                </div>
-                            </th>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                                <div class="flex items-center">
-                                    <svg class="w-4 h-4 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path>
-                                    </svg>
-                                    Email
-                                </div>
-                            </th>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                                <div class="flex items-center">
-                                    <svg class="w-4 h-4 mr-2 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
-                                    </svg>
-                                    Subject
-                                </div>
-                            </th>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                                <div class="flex items-center">
-                                    <svg class="w-4 h-4 mr-2 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
-                                    </svg>
-                                    Actions
-                                </div>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-pink-100">
-                        @foreach($messages as $msg)
-                            <tr class="hover:bg-gradient-to-r hover:from-pink-50/50 hover:to-rose-50/50 transition-all duration-200">
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div class="w-8 h-8 bg-gradient-to-r from-pink-400 to-rose-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                                            {{ $msg->id }}
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm font-medium text-gray-900">{{ $msg->name }}</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-600">{{ $msg->email }}</div>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <div class="text-sm text-gray-900 max-w-xs truncate" title="{{ $msg->subject }}">
-                                        {{ $msg->subject }}
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center space-x-2">
-                                        <!-- Edit Button -->
-                                        <a href="{{ route('admin.messages.edit', $msg->id) }}" 
-                                           class="inline-flex items-center px-3 py-2 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-xs font-semibold rounded-xl hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-amber-200">
-                                            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-                                            </svg>
-                                            Edit
-                                        </a>
-                                        
-                                        <!-- Delete Form -->
-                                        <form action="{{ route('admin.messages.destroy', $msg->id) }}" method="POST" style="display:inline-block;">
-                                            @csrf 
-                                            @method('DELETE')
-                                            <button type="submit" 
-                                                    onclick="return confirm('Are you sure you want to delete this message? This action cannot be undone.')"
-                                                    class="inline-flex items-center px-3 py-2 bg-gradient-to-r from-red-400 to-pink-500 text-white text-xs font-semibold rounded-xl hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-200">
-                                                <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                                </svg>
-                                                Delete
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+                                    Delete
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+
 
             <!-- Empty State -->
             @if($messages->isEmpty())

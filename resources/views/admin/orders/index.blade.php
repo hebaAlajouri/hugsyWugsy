@@ -44,56 +44,59 @@
                         <th class="col-actions"><i class="fas fa-cog"></i> Actions</th>
                     </tr>
                 </thead>
-                <tbody>
-                    @foreach ($orders as $order)
-                        <tr class="order-row">
-                            <td class="order-id">#{{ $order->id }}</td>
-                            <td class="customer-name">
-                                <div class="customer-info">
-                                    <span class="name">{{ $order->user ? $order->user->name : 'Guest' }}</span>
-                                    @if(!$order->user)
-                                        <span class="guest-badge">Guest</span>
-                                    @endif
-                                </div>
-                            </td>
-                            <td class="email">
-                                <span class="email-text">{{ $order->email ?: 'N/A' }}</span>
-                            </td>
-                            <td class="phone">
-                                <span class="phone-text">{{ $order->phone ?: 'N/A' }}</span>
-                            </td>
-                            <td class="total">
-                                <span class="price">${{ number_format($order->total, 2) }}</span>
-                            </td>
-                            <td class="actions">
-                                <div class="action-buttons">
-                                    <a href="{{ route('admin.orders.edit', $order->id) }}" 
-                                       class="btn-edit" title="Edit Order">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <form action="{{ route('admin.orders.destroy', $order->id) }}" 
-                                          method="POST" 
-                                          style="display:inline-block"
-                                          class="delete-form">
-                                        @csrf @method('DELETE')
-                                        <button type="submit" 
-                                                class="btn-delete" 
-                                                title="Delete Order"
-                                                onclick="return confirm('Are you sure you want to delete this order? This action cannot be undone.')">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
+               <tbody>
+    @foreach ($orders as $order)
+        <tr class="order-row">
+            <td class="order-id" data-label="Order ID">#{{ $order->id }}</td>
+            <td class="customer-name" data-label="Customer">
+                <div class="customer-info">
+                    <span class="name">{{ $order->user ? $order->user->name : 'Guest' }}</span>
+                    @if(!$order->user)
+                        <span class="guest-badge">Guest</span>
+                    @endif
+                </div>
+            </td>
+            <td class="email" data-label="Email">
+                <span class="email-text">{{ $order->email ?: 'N/A' }}</span>
+            </td>
+            <td class="phone" data-label="Phone">
+                <span class="phone-text">{{ $order->phone ?: 'N/A' }}</span>
+            </td>
+            <td class="total" data-label="Total">
+                <span class="price">${{ number_format($order->total, 2) }}</span>
+            </td>
+            <td class="actions" data-label="Actions">
+                <div class="action-buttons">
+                    <a href="{{ route('admin.orders.edit', $order->id) }}" 
+                       class="btn-edit" title="Edit Order">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <form action="{{ route('admin.orders.destroy', $order->id) }}" 
+                          method="POST" 
+                          style="display:inline-block"
+                          class="delete-form">
+                        @csrf 
+                        @method('DELETE')
+                        <button type="submit" 
+                                class="btn-delete" 
+                                title="Delete Order"
+                                onclick="return confirm('Are you sure you want to delete this order? This action cannot be undone.')">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+    @endforeach
+</tbody>
+
             </table>
         </div>
     </div>
 </div>
 
 <style>
+/* Base Styles */
 .feminine-orders-container {
     padding: 2rem;
     background: linear-gradient(135deg, #ffeef8 0%, #f8f0ff 100%);
@@ -119,10 +122,9 @@
     font-weight: 600;
     margin: 0;
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
     flex-direction: column;
     align-items: flex-start;
+    gap: 0.5rem;
 }
 
 .page-title i {
@@ -155,8 +157,6 @@
 .btn-add-order:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
-    color: white;
-    text-decoration: none;
 }
 
 .success-message {
@@ -436,7 +436,32 @@
     }
 }
 
-/* Animation for new elements */
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 1.5rem;
+    }
+    
+    .btn-add-order {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .card-header h3 {
+        font-size: 1.2rem;
+    }
+    
+    .orders-count {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .customer-info .name,
+    .price {
+        font-size: 0.85rem;
+    }
+}
+
+/* Animation for rows */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -452,7 +477,7 @@
     animation: fadeInUp 0.5s ease forwards;
 }
 
-/* Custom scrollbar for table */
+/* Custom scrollbar for table container */
 .table-container::-webkit-scrollbar {
     height: 8px;
 }
@@ -470,6 +495,54 @@
 .table-container::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(135deg, #c2185b 0%, #e91e63 100%);
 }
+@media (max-width: 768px) {
+    .orders-table, 
+    .orders-table thead, 
+    .orders-table tbody, 
+    .orders-table th, 
+    .orders-table td, 
+    .orders-table tr {
+        display: block;
+        width: 100%;
+    }
+
+    .orders-table thead {
+        display: none;
+    }
+
+    .order-row {
+        margin-bottom: 1.5rem;
+        border: 1px solid #e91e63;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(233, 30, 99, 0.1);
+        background: #fff5f9;
+        padding: 1rem;
+    }
+
+    .orders-table td {
+        padding: 0.5rem 0;
+        position: relative;
+        text-align: left;
+    }
+
+    .orders-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 45%;
+        font-weight: 600;
+        color: #e91e63;
+        padding-left: 1rem;
+    }
+
+    .orders-table td {
+        padding-left: 50%;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+    }
+}
+
 </style>
 
 <!-- Font Awesome for icons -->

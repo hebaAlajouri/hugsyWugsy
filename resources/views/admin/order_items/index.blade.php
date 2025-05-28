@@ -284,6 +284,99 @@
         0%, 100% { opacity: 0.3; transform: scale(1); }
         50% { opacity: 0.8; transform: scale(1.2); }
     }
+    /* Base styles as before, no horizontal scrollbar on desktop */
+
+.table-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(255, 182, 193, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  /* remove overflow-x here */
+}
+
+/* Table normal style on desktop */
+.custom-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(255, 182, 193, 0.15);
+  background: white;
+  width: 100%;
+}
+
+/* Hide horizontal scrollbar on mobile and convert table to cards */
+@media (max-width: 768px) {
+  .custom-table, 
+  .custom-table thead, 
+  .custom-table tbody, 
+  .custom-table th, 
+  .custom-table td, 
+  .custom-table tr {
+    display: block;
+    width: 100%;
+  }
+  
+  /* Hide table header on mobile */
+  .custom-table thead tr {
+    display: none;
+  }
+  
+  .custom-table tbody tr {
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #fff0f6 0%, #faf0ff 100%);
+    border-radius: 15px;
+    padding: 1rem;
+    box-shadow: 0 3px 15px rgba(255, 182, 193, 0.2);
+  }
+  
+  .custom-table tbody td {
+    /* Add label before each cell */
+    position: relative;
+    padding-left: 50%;
+    text-align: left;
+    border-bottom: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #5a4a6b;
+  }
+  
+  /* Label text from data-label attribute */
+  .custom-table tbody td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    font-weight: 700;
+    color: #8b5a96;
+    white-space: nowrap;
+  }
+  
+  /* Last td no border */
+  .custom-table tbody td:last-child {
+    border-bottom: none;
+  }
+  
+  /* Action buttons inline and smaller */
+  .action-btn {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    margin: 0 2px 6px 0;
+  }
+  
+  /* Adjust badges */
+  .order-badge,
+  .quantity-badge,
+  .price-tag,
+  .id-badge {
+    display: inline-block;
+    margin-top: 0.3rem;
+    font-size: 0.85rem;
+  }
+}
+
 </style>
 
 <div class="admin-container">
@@ -330,56 +423,57 @@
                         <th>🛠️ Actions</th>
                     </tr>
                 </thead>
-                <tbody>
-                    @forelse($orderItems as $item)
-                        <tr>
-                            <td>
-                                <span class="id-badge">{{ $item->id }}</span>
-                            </td>
-                            <td>
-                                <span class="order-badge">#{{ $item->order_id }}</span>
-                            </td>
-                            <td>
-                                <span class="{{ $item->product ? 'product-name' : 'deleted-product' }}">
-                                    {{ $item->product->name ?? 'Deleted Product' }}
-                                    @if(!$item->product)
-                                        <span>🚫</span>
-                                    @endif
-                                </span>
-                            </td>
-                            <td>
-                                <span class="quantity-badge">{{ $item->quantity }}</span>
-                            </td>
-                            <td>
-                                <span class="price-tag">${{ number_format($item->price, 2) }}</span>
-                            </td>
-                            <td>
-                                <a href="{{ route('admin.order_items.edit', $item->id) }}" class="action-btn edit-btn">
-                                    <span>💅</span>
-                                    Edit
-                                </a>
-                                
-                                <form action="{{ route('admin.order_items.destroy', $item->id) }}" method="POST" style="display:inline;">
-                                    @csrf 
-                                    @method('DELETE')
-                                    <button type="submit" class="action-btn delete-btn" 
-                                            onclick="return confirm('Delete this lovely item? 💭')">
-                                        <span>🗑️</span>
-                                        Delete
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="6" class="empty-state">
-                                <span class="empty-icon">🛍️</span>
-                                <div>No order items found</div>
-                                <small style="color: #d1a3e0;">Add some lovely items to get started! 💕</small>
-                            </td>
-                        </tr>
-                    @endforelse
-                </tbody>
+               <tbody>
+    @forelse($orderItems as $item)
+        <tr>
+            <td data-label="ID">
+                <span class="id-badge">{{ $item->id }}</span>
+            </td>
+            <td data-label="Order ID">
+                <span class="order-badge">#{{ $item->order_id }}</span>
+            </td>
+            <td data-label="Product Name">
+                <span class="{{ $item->product ? 'product-name' : 'deleted-product' }}">
+                    {{ $item->product->name ?? 'Deleted Product' }}
+                    @if(!$item->product)
+                        <span>🚫</span>
+                    @endif
+                </span>
+            </td>
+            <td data-label="Quantity">
+                <span class="quantity-badge">{{ $item->quantity }}</span>
+            </td>
+            <td data-label="Price">
+                <span class="price-tag">${{ number_format($item->price, 2) }}</span>
+            </td>
+            <td data-label="Actions">
+                <a href="{{ route('admin.order_items.edit', $item->id) }}" class="action-btn edit-btn">
+                    <span>💅</span>
+                    Edit
+                </a>
+
+                <form action="{{ route('admin.order_items.destroy', $item->id) }}" method="POST" style="display:inline;">
+                    @csrf 
+                    @method('DELETE')
+                    <button type="submit" class="action-btn delete-btn" 
+                            onclick="return confirm('Delete this lovely item? 💭')">
+                        <span>🗑️</span>
+                        Delete
+                    </button>
+                </form>
+            </td>
+        </tr>
+    @empty
+        <tr>
+            <td colspan="6" class="empty-state" data-label="No Data">
+                <span class="empty-icon">🛍️</span>
+                <div>No order items found</div>
+                <small style="color: #d1a3e0;">Add some lovely items to get started! 💕</small>
+            </td>
+        </tr>
+    @endforelse
+</tbody>
+
             </table>
         </div>
     </div>

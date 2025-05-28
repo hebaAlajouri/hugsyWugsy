@@ -1,3 +1,4 @@
+
 <?php
 
 use App\Http\Controllers\ProfileController; 
@@ -88,7 +89,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/profile/update', [ProfileController::class, 'update'])->name('pages.profile.update');
 
     // Admin routes
-    Route::prefix('admin')->name('admin.')->group(function () {
+  Route::prefix('admin')->name('admin.')->middleware('checkAdmin')->group(function () {
 
         Route::resource('customizations', AdminCustomizationController::class);
         Route::get('users', [UserController::class, 'index'])->name('users.index');
@@ -103,7 +104,7 @@ Route::middleware('auth')->group(function () {
   
 
 
-    Route::prefix('admin/order-items')->name('admin.order_items.')->group(function () {
+    Route::prefix('admin/order-items')->name('admin.order_items.')->middleware('checkAdmin')->group(function () {
         Route::get('/', [AdminOrderItemController::class, 'index'])->name('index');
         Route::get('/create', [AdminOrderItemController::class, 'create'])->name('create');
         Route::post('/', [AdminOrderItemController::class, 'store'])->name('store');
@@ -112,7 +113,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('/{order_item}', [AdminOrderItemController::class, 'destroy'])->name('destroy');
     });
 
-    Route::prefix('admin/admin_roles')->name('admin.admin_roles.')->group(function () {
+    Route::prefix('admin/admin_roles')->name('admin.admin_roles.')->middleware('checkAdmin')->group(function () {
         Route::get('/', [AdminRoleController::class, 'index'])->name('index');
         Route::get('/create', [AdminRoleController::class, 'create'])->name('create');
         Route::post('/', [AdminRoleController::class, 'store'])->name('store');
@@ -121,7 +122,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('/{admin_role}', [AdminRoleController::class, 'destroy'])->name('destroy');
     });
 
-    Route::prefix('admin/messages')->name('admin.messages.')->group(function () {
+    Route::prefix('admin/messages')->name('admin.messages.')->middleware('checkAdmin')->group(function () {
         Route::get('/', [AdminMessageController::class, 'index'])->name('index');
         Route::get('/create', [AdminMessageController::class, 'create'])->name('create');
         Route::post('/', [AdminMessageController::class, 'store'])->name('store');
@@ -333,8 +334,12 @@ Route::middleware(['auth'])->group(function () {
     
 //     // API endpoints
 //     Route::get('/api/user/bear-stats', [BearCertificateController::class, 'userStats'])->name('api.user.bear-stats');
-// });
-Route::middleware('auth')->group(function () {
-Route::get('/admin/dashboard', function () {
+// });te::middleware('auth')->group(function () {
+
+Route::middleware([
+    'auth',
+    \App\Http\Middleware\CheckAdmin::class,
+])->group(function () {
+   Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 })->name('admin.dashboard');});
