@@ -1,16 +1,46 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h2>Add New Message</h2>
+<div class="container py-4">
+    <h2 class="text-center mb-4" style="color: #D36BA6; font-weight: bold;">💌 Add New Message</h2>
 
-    <form action="{{ route('admin.messages.store') }}" method="POST">
+    <form action="{{ route('messages.store') }}" method="POST" class="p-4 rounded shadow-sm" style="background-color: #FFF0F6;">
         @csrf
 
-        <div class="mb-3"><label>Name</label><input name="name" class="form-control"></div>
-        <div class="mb-3"><label>Email</label><input name="email" class="form-control"></div>
-        <div class="mb-3"><label>Subject</label><input name="subject" class="form-control"></div>
-        <div class="mb-3"><label>Message</label><textarea name="message" class="form-control"></textarea></div>
+        <!-- Name -->
+        <div class="mb-3">
+            <label for="name" class="form-label" style="color: #AD4C8C;">👧 Name</label>
+            <input type="text" name="name" id="name" class="form-control"
+                style="border: 2px dashed #F5A9C0; background-color: #FFF8FB;" required>
+        </div>
 
-        <button class="btn btn-success">Save</button>
+        <!-- Email -->
+        <div class="mb-3">
+            <label for="email" class="form-label" style="color: #AD4C8C;">📧 Email</label>
+            <input type="email" name="email" id="email" class="form-control"
+                style="border: 2px dashed #F5A9C0; background-color: #FFF8FB;" required>
+        </div>
+
+        <!-- Subject -->
+        <div class="mb-3">
+            <label for="subject" class="form-label" style="color: #AD4C8C;">🎀 Subject</label>
+            <input type="text" name="subject" id="subject" class="form-control"
+                style="border: 2px dashed #F5A9C0; background-color: #FFF8FB;" required>
+        </div>
+
+        <!-- Message -->
+        <div class="mb-4">
+            <label for="message" class="form-label" style="color: #AD4C8C;">📝 Message</label>
+            <textarea name="message" id="message" rows="4" class="form-control"
+                style="border: 2px dashed #F5A9C0; background-color: #FFF8FB;" required></textarea>
+        </div>
+
+        <!-- Submit -->
+        <div class="text-center">
+            <button type="submit" class="btn" style="background-color: #F5A9C0; color: white; font-weight: bold; padding: 10px 30px; border-radius: 30px;">
+                💾 Save Message
+            </button>
+        </div>
     </form>
+</div>
 @endsection

@@ -45,4 +45,19 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    /**
+ * Get all bear certificates for this user
+ */
+public function bearCertificates()
+{
+    return $this->hasMany(BearCertificate::class);
+}
+
+/**
+ * Get the active/current bear certificate
+ */
+public function currentBearCertificate()
+{
+    return $this->hasOne(BearCertificate::class)->where('is_active', true)->latest();
+}
 }

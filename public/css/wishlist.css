@@ -84,3 +84,289 @@ body {
     font-weight: bold;
     border-radius: 5px;
 }
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: linear-gradient(135deg, #E6399B 0%, #FF69B4 30%, #FFB6C1 70%, #FFD6E3 100%);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 40px rgba(230, 57, 155, 0.25);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    border-radius: 1px;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: 800;
+    color: #4B0082;
+    letter-spacing: 2px;
+    text-shadow: 0 3px 6px rgba(75, 0, 130, 0.15);
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    text-shadow: 0 4px 8px rgba(75, 0, 130, 0.3);
+}
+
+.logo::after {
+    content: '✨';
+    font-size: 22px;
+    animation: sparkle 2.5s ease-in-out infinite;
+    filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.4));
+}
+
+/* Navigation styles that work with your inline styles */
+nav ul {
+    display: flex !important;
+    align-items: center !important;
+    gap: 20px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+}
+
+nav li {
+    position: relative;
+}
+
+/* Regular navigation links */
+nav a:not(.profile-btn):not(.login-btn) {
+    text-decoration: none;
+    color: #4B0082 !important;
+    font-weight: 600;
+    padding: 12px 20px;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 25px;
+    backdrop-filter: blur(5px);
+    font-size: 16px;
+}
+
+nav a:not(.profile-btn):not(.login-btn)::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 25px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+nav a:not(.profile-btn):not(.login-btn)::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #E6399B, #FF69B4);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    bottom: 3px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+nav a:not(.profile-btn):not(.login-btn):hover {
+    color: #E6399B !important;
+    transform: translateY(-3px);
+    text-shadow: 0 3px 6px rgba(230, 57, 155, 0.3);
+}
+
+nav a:not(.profile-btn):not(.login-btn):hover::before {
+    opacity: 1;
+}
+
+nav a:not(.profile-btn):not(.login-btn):hover::after {
+    width: 85%;
+}
+
+/* Enhanced icon styles for FontAwesome icons */
+nav .fas {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    filter: drop-shadow(0 2px 4px rgba(255, 105, 180, 0.3));
+}
+
+/* Wishlist heart icon enhancement */
+nav a[href*="wishlist"] .fas.fa-heart {
+    color: #ff69b4 !important;
+    font-size: 4vh !important;
+    position: relative;
+}
+
+nav a[href*="wishlist"]:hover .fas.fa-heart {
+    color: #ff1493 !important;
+    transform: scale(1.2) rotate(5deg);
+    filter: drop-shadow(0 4px 8px rgba(255, 20, 147, 0.4));
+    animation: heartBeat 0.6s ease-in-out;
+}
+
+/* Profile icon enhancement */
+.profile-btn .fas.fa-user-circle {
+    color: #4B0082 !important;
+    font-size: 6vh !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.profile-btn:hover .fas.fa-user-circle {
+    color: #663399 !important;
+    transform: scale(1.1) rotate(360deg);
+    filter: drop-shadow(0 4px 8px rgba(75, 0, 130, 0.4));
+}
+
+/* Logout button enhancement */
+nav form button {
+    background: none !important;
+    border: none !important;
+    padding: 8px !important;
+    cursor: pointer !important;
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+nav form button:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    transform: scale(1.05);
+}
+
+nav form button .fas.fa-sign-out-alt {
+    font-size: 4vh !important;
+    color: #ff69b4 !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+nav form button:hover .fas.fa-sign-out-alt {
+    color: #ff1493 !important;
+    transform: rotate(10deg);
+    filter: drop-shadow(0 3px 6px rgba(255, 20, 147, 0.4));
+}
+
+/* Profile Image Styling */
+.profile-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #ff77b5;
+    box-shadow: 0 4px 15px rgba(255, 119, 181, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.profile-btn::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #ff77b5, #E6399B, #ff77b5);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.profile-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 119, 181, 0.4);
+}
+
+.profile-btn:hover::before {
+    opacity: 1;
+}
+
+.profile-btn .profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+/* Login Button Styling */
+.login-btn {
+    background: linear-gradient(135deg, #ff77b5 0%, #E6399B 50%, #ff1493 100%) !important;
+    color: white !important;
+    padding: 14px 24px !important;
+    border-radius: 30px !important;
+    font-size: 16px !important;
+    text-align: center !important;
+    box-shadow: 0 6px 20px rgba(255, 119, 181, 0.4) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    font-weight: 600 !important;
+    position: relative !important;
+    overflow: hidden !important;
+    border: 2px solid transparent !important;
+    text-decoration: none !important;
+}
+
+.login-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.login-btn::after {
+    content: '💖';
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+    background: linear-gradient(135deg, #ff66a1 0%, #D63384 50%, #ff0080 100%) !important;
+    transform: translateY(-3px) scale(1.05) !important;
+    box-shadow: 0 10px 30px rgba(255, 119, 181, 0.5) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    color: white !important;
+}
+
+.login-btn:hover::before {
+    left: 100%;
+}
+
+.login-btn:hover::after {
+    right: 8px;
+    opacity: 1;
+}

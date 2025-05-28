@@ -72,9 +72,6 @@
 
                 <a href="{{ route('pages.products.show', $product->id) }}" class="btn btn-primary">Show Details</a>
 
-                @if($product->is_customizable)
-                    <p>Customizable</p>
-                @endif
 
                 <form action="{{ route('wishlist.add', $product->id) }}" method="POST" class="d-inline">
                     @csrf
@@ -82,6 +79,10 @@
         <i class="fas fa-heart"></i> <!-- Font Awesome Heart Icon -->
     </button>
                 </form>
+                
+                @if($product->is_customizable)
+    <i class="fas fa-magic" title="Customizable" style="color: #ec407a; font-size: 1.3rem; margin-top: 5px;"></i>
+@endif
             </div>
         @endforeach
     </section>
@@ -97,10 +98,7 @@
             <p class="price">${{ number_format($product->price, 2) }}</p>
 
             <a href="{{ route('pages.products.show', $product->id) }}" class="btn btn-primary">Show Details</a>
-
-            @if($product->is_customizable)
-                <p>Customizable</p>
-            @endif
+           
 
             <form action="{{ route('wishlist.add', $product->id) }}" method="POST" class="d-inline">
                 @csrf
@@ -108,6 +106,9 @@
         <i class="fas fa-heart"></i> <!-- Font Awesome Heart Icon -->
     </button>
             </form>
+            @if($product->is_customizable)
+    <i class="fas fa-magic" title="Customizable" style="color: #ec407a; font-size: 1.3rem; margin-top: 5px;"></i>
+@endif
         </div>
     @empty
         <div class="text-center w-100">

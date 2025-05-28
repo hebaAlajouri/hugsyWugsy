@@ -8,9 +8,13 @@ use App\Http\Controllers\Admin\CertificateController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminCustomizationController;
 use App\Http\Controllers\Admin\AdminOrderController;
-use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\Admin\AdminOrderItemController;
+use App\Http\Controllers\Admin\AdminWishlistController;
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\PageController;
+
 
 
 Route::get('/', function () {
@@ -40,14 +44,16 @@ use App\Http\Controllers\CheckoutController;
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\UserController;
+
 use App\Http\Controllers\Admin\GiftCardController;
+
 Route::get('/', function () {
     return view('pages.index');
 });
+Route::middleware('auth')->group(function () {
 Route::get('/customizer', function () {
     return view('pages.customizer');
-})->name('customizer');
+})->name('customizer');});
 Route::get('/about', function () {
     return view('pages.about');
 });
@@ -76,7 +82,7 @@ Route::get('/gift-card', function () {
 
     // Non-admin routes
     Route::resource('/users', UserController::class);
-
+Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('pages.profile.show');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('pages.profile.edit');
     Route::post('/profile/update', [ProfileController::class, 'update'])->name('pages.profile.update');
@@ -85,13 +91,17 @@ Route::get('/gift-card', function () {
     Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::resource('customizations', AdminCustomizationController::class);
-        Route::get('users', [AdminUserController::class, 'index'])->name('users.index');
+        Route::get('users', [UserController::class, 'index'])->name('users.index');
+        Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
         Route::resource('products', AdminProductController::class);
         Route::resource('wishlist', AdminWishlistController::class)->except(['show']);
         Route::resource('orders', AdminOrderController::class)->except(['show']);
         Route::resource('gift_cards', GiftCardController::class);
         Route::resource('certificates', CertificateController::class);
     });
+    
+  
+
 
     Route::prefix('admin/order-items')->name('admin.order_items.')->group(function () {
         Route::get('/', [AdminOrderItemController::class, 'index'])->name('index');
@@ -120,7 +130,7 @@ Route::get('/gift-card', function () {
         Route::delete('/{message}', [AdminMessageController::class, 'destroy'])->name('destroy');
     });
 
-
+});
 
 
 
@@ -134,18 +144,19 @@ Route::get('/gift-card', function () {
 
 // // Other routes...
 use App\Http\Controllers\CustomizationController;
-
+Route::middleware('auth')->group(function () {
 Route::get('/customize-bear', function () {
     return view('customizer'); // replace with your Blade filename
-})->name('bear.customize');
+})->name('bear.customize');});
 Route::get('/shop', function () {
     return view('pages.shop'); // replace with your Blade filename
 })->name('shop');
+Route::middleware('auth')->group(function () {
 Route::get('/fav', function () {
     return view('pages.wishlist'); // replace with your Blade filename
 })->name('fav');
 
-Route::post('/customization', [CustomizationController::class, 'store'])->name('customization.store');
+Route::post('/customization', [CustomizationController::class, 'store'])->name('customization.store');});
 use App\Http\Controllers\ContactController;
 
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');use App\Http\Controllers\MessageController;
@@ -170,6 +181,7 @@ Route::get('/shop', [App\Http\Controllers\ShopController::class, 'index'])->name
 
 // Alternative route matching what your current JavaScript is using
 use App\Http\Controllers\VoiceRecordingController;
+Route::middleware('auth')->group(function () {
 Route::get('/pages/voice_recording', function() {
     return view('pages.voice_recording');
 })->name('pages.voice_recording');
@@ -177,7 +189,7 @@ Route::get('/pages/voice_recording', function() {
 Route::post('/pages/voice_recording/store', [VoiceRecordingController::class, 'store'])
     ->name('pages.voice_recording.store');
 
-
+});
 
 
 Route::post('/gift-cards', [GiftCardController::class, 'store'])->name('pages.gift-cards.store');
@@ -187,7 +199,7 @@ Route::post('/gift-cards', [GiftCardController::class, 'store'])->name('pages.gi
 
 ///////////////////////////////////////////////////////////////////////////
 
-
+Route::middleware('auth')->group(function () {
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('pages.checkout.index');
 Route::post('/checkout/place-order', [CheckoutController::class, 'placeOrder'])->name('pages.checkout.placeOrder');
 ///////////////////////////////////////////////////////////////////////////
@@ -206,7 +218,7 @@ Route::post('/wishlist/add/{product}', [App\Http\Controllers\WishlistController:
     Route::get('/customize/{product}', [PageController::class, 'customizer'])->name('pages.customizer');
 
     Route::post('/customizations/store', [\App\Http\Controllers\CustomizationController::class, 'store'])->name('pages.customizer.store');
-   
+     });
         Route::get('/dashboard', function () {
             return view('dashboard');
         });
@@ -214,7 +226,7 @@ Route::post('/wishlist/add/{product}', [App\Http\Controllers\WishlistController:
         Route::get('/admin/dashboard', function () {
             return view('admin.dashboard');
         });
-      
+    
 
 Route::middleware('auth')->group(function () {
     Route::get('/orders', [OrderController::class, 'index'])->name('pages.orders.index');
@@ -224,6 +236,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/my-bear-messages', [VoiceRecordingController::class, 'index'])
         ->name('voice.messages.index');
 });
+Route::middleware('auth')->group(function () {
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('pages.products.show');
 
 
@@ -262,9 +275,9 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/orders/create', [OrderController::class, 'createFromCart'])->name('orders.create');
 Route::get('/cart', function () {
     return view('cart.index');
-})->name('cart.index');
+})->name('cart.index');});
 use App\Http\Controllers\CartController;
-
+Route::middleware('auth')->group(function () {
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::get('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
@@ -279,7 +292,7 @@ Route::get('/checkout', [CartController::class, 'showCheckoutForm'])->name('chec
 Route::post('/checkout', [CartController::class, 'placeOrder'])->name('checkout.submit');
 Route::get('/cart/confirmation/{order}', function (\App\Models\Order $order) {
     return view('cart.confirmation', compact('order'));
-})->name('cart.confirmation');
+})->name('cart.confirmation');});
 /////////////////////////////////////////////////////
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
@@ -294,3 +307,34 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
     Route::delete('/wishlist/{wishlist}', [WishlistController::class, 'remove'])->name('wishlist.remove');
 });
+// use App\Http\Controllers\BearCertificateController;
+
+// // Public route for viewing shared certificates
+// Route::get('/certificate/view/{certificateNumber}', [BearCertificateController::class, 'view'])
+//      ->name('pages.certificate.view');
+
+// // Protected routes (require authentication)
+// Route::middleware(['auth', 'verified'])->group(function () {
+    
+//     // Main certificate routes
+//     Route::prefix('certificate')->name('pages.certificate.')->group(function () {
+//         Route::get('/', [BearCertificateController::class, 'index'])->name('index');
+//         Route::post('/generate', [BearCertificateController::class, 'generate'])->name('generate');
+//         Route::get('/edit/{certificate}', [BearCertificateController::class, 'edit'])->name('edit');
+//         Route::put('/update/{certificate}', [BearCertificateController::class, 'update'])->name('update');
+//         Route::patch('/deactivate/{certificate}', [BearCertificateController::class, 'deactivate'])->name('deactivate');
+//         Route::patch('/reactivate/{certificate}', [BearCertificateController::class, 'reactivate'])->name('reactivate');
+//         Route::get('/download/{certificate}', [BearCertificateController::class, 'download'])->name('download');
+//         Route::get('/share-url/{certificate}', [BearCertificateController::class, 'getShareUrl'])->name('share-url');
+//     });
+    
+//     // User's bear collection
+//     Route::get('/my-bears', [BearCertificateController::class, 'myBears'])->name('pages.my-bears');
+    
+//     // API endpoints
+//     Route::get('/api/user/bear-stats', [BearCertificateController::class, 'userStats'])->name('api.user.bear-stats');
+// });
+Route::middleware('auth')->group(function () {
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+})->name('admin.dashboard');});

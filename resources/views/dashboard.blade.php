@@ -60,21 +60,30 @@
 </section>
 
 <!-- HAPPY HUGS -->
-<section class="happy-hugs">
-    <h2>Happy Hugs</h2>
-    <div class="testimonials-container">
-        <div class="testimonial-card">
-            <p class="testimonial-text">"Absolutely love my custom teddy! So soft and adorable!"</p>
-            <p class="testimonial-author">- Sarah 💖</p>
+<!-- VOICE MESSAGES MAGIC -->
+<section class="voice-magic">
+    <h2>Make Your Teddy Talk! 🎤</h2>
+    <p class="section-subtitle">Record sweet messages that play from your teddy's heart</p>
+    <div class="voice-features">
+        <div class="voice-feature">
+            <div class="voice-icon">🎵</div>
+            <h3>Record Your Voice</h3>
+            <p>Capture "I love you," lullabies, or any special message</p>
         </div>
-        <div class="testimonial-card">
-            <p class="testimonial-text">"The perfect gift! My daughter loves her teddy so much!"</p>
-            <p class="testimonial-author">- Hannah 🎀</p>
+        <div class="voice-feature">
+            <div class="voice-icon">💝</div>
+            <h3>Built-In Speaker</h3>
+            <p>Hidden speaker plays your message with a gentle squeeze</p>
         </div>
-        <div class="testimonial-card">
-            <p class="testimonial-text">"Super cute and magical experience customizing my teddy!"</p>
-            <p class="testimonial-author">- Lisa 🌸</p>
+        <div class="voice-feature">
+            <div class="voice-icon">✨</div>
+            <h3>Magical Moments</h3>
+            <p>Create lasting memories with personalized audio hugs</p>
         </div>
+    </div>
+    <div class="voice-demo">
+        <img src="{{ asset('images/teddy-speaking.png') }}" alt="Talking Teddy Bear">
+        <button class="demo-btn">🎤 Try Voice Recording</button>
     </div>
 </section>
 
